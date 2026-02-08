@@ -1,5 +1,6 @@
 import React from "react";
 import html2canvas from "html2canvas";
+import { MdDownload, MdRefresh } from "react-icons/md";
 
 function ChartSettings({
   columns,
@@ -21,7 +22,7 @@ function ChartSettings({
         link.download = "chart.png";
         link.href = canvas.toDataURL();
         link.click();
-      }
+      },
     );
   };
 
@@ -78,35 +79,15 @@ function ChartSettings({
           className="btn btn-primary w-100 mb-2 download-btn"
           onClick={handleDownload}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-download me-2"
-            viewBox="0 0 16 16"
-          >
-            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-          </svg>
+          <MdDownload className="me-2" />
           Download Chart
         </button>
 
-        <button className="btn btn-outline-secondary w-100 reset-btn" onClick={onReset}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-arrow-counterclockwise me-2"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fillRule="evenodd"
-              d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"
-            />
-            <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
-          </svg>
+        <button
+          className="btn btn-outline-secondary w-100 reset-btn"
+          onClick={onReset}
+        >
+          <MdRefresh className="me-2" />
           Upload New File
         </button>
       </div>
