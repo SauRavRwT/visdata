@@ -10,10 +10,10 @@ function Navbar({ onToggleHistory, historyCount }) {
         </a>
         {historyCount > 0 && (
           <button
-            className="btn btn-outline-light btn-sm history-toggle-btn"
+            className="btn btn-outline-light btn-sm history-toggle-btn d-flex align-items-center"
             onClick={onToggleHistory}
           >
-            <MdAccessTimeFilled />
+            <MdAccessTimeFilled className="me-1" size={20} />
             History ({historyCount})
           </button>
         )}
