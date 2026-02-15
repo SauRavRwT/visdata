@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/visdata/static/css/main.7463f3e4.css",
-    "main.js": "/visdata/static/js/main.d80488cb.js",
+    "main.js": "/visdata/static/js/main.a96b4ebe.js",
     "static/js/453.43e81b10.chunk.js": "/visdata/static/js/453.43e81b10.chunk.js",
     "index.html": "/visdata/index.html",
     "main.7463f3e4.css.map": "/visdata/static/css/main.7463f3e4.css.map",
-    "main.d80488cb.js.map": "/visdata/static/js/main.d80488cb.js.map",
+    "main.a96b4ebe.js.map": "/visdata/static/js/main.a96b4ebe.js.map",
     "453.43e81b10.chunk.js.map": "/visdata/static/js/453.43e81b10.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7463f3e4.css",
-    "static/js/main.d80488cb.js"
+    "static/js/main.a96b4ebe.js"
   ]
 }
