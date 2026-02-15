@@ -100,7 +100,7 @@ function App() {
         onToggleHistory={handleToggleHistory}
         historyCount={fileHistory.length}
       />
-      <div className="container-fluid min-vh-100 px-4 py-4">
+      <div className="container-fluid px-4 py-4">
         {!data.length ? (
           <>
             <UploadFiles onDataUpload={handleDataUpload} />
