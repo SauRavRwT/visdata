@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.7463f3e4.css",
-    "main.js": "/static/js/main.d5b5566e.js",
-    "static/js/453.43e81b10.chunk.js": "/static/js/453.43e81b10.chunk.js",
-    "index.html": "/index.html",
-    "main.7463f3e4.css.map": "/static/css/main.7463f3e4.css.map",
-    "main.d5b5566e.js.map": "/static/js/main.d5b5566e.js.map",
-    "453.43e81b10.chunk.js.map": "/static/js/453.43e81b10.chunk.js.map"
+    "main.css": "/visdata/static/css/main.7463f3e4.css",
+    "main.js": "/visdata/static/js/main.d80488cb.js",
+    "static/js/453.43e81b10.chunk.js": "/visdata/static/js/453.43e81b10.chunk.js",
+    "index.html": "/visdata/index.html",
+    "main.7463f3e4.css.map": "/visdata/static/css/main.7463f3e4.css.map",
+    "main.d80488cb.js.map": "/visdata/static/js/main.d80488cb.js.map",
+    "453.43e81b10.chunk.js.map": "/visdata/static/js/453.43e81b10.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7463f3e4.css",
-    "static/js/main.d5b5566e.js"
+    "static/js/main.d80488cb.js"
   ]
 }
