@@ -12,6 +12,14 @@ function ChartSettings({
   onChartTypeChange,
   chartRef,
   onReset,
+  types = {},
+  filters = {},
+  setFilters = () => {},
+  uniqueValues = {},
+  groupBy,
+  setGroupBy = () => {},
+  aggFns = {},
+  setAggFns = () => {},
 }) {
   const handleDownload = () => {
     if (!chartRef.current) return;
@@ -73,6 +81,108 @@ function ChartSettings({
             <option value="bar">Bar Chart</option>
             <option value="pie">Pie Chart</option>
           </select>
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Filters</label>
+          <div className="small text-muted mb-2">Filter columns to slice data</div>
+          <div style={{ maxHeight: 220, overflow: "auto" }}>
+            {columns.map((col) => {
+              const t = types[col] || "categorical";
+              const f = filters[col] || {};
+              if (t === "numeric") {
+                return (
+                  <div key={col} className="mb-2">
+                    <div className="fw-semibold">{col}</div>
+                    <div className="d-flex gap-2 align-items-center">
+                      <input
+                        type="number"
+                        className="form-control form-control-sm"
+                        placeholder="min"
+                        value={f.min ?? ""}
+                        onChange={(e) =>
+                          setFilters((prev) => ({
+                            ...prev,
+                            [col]: { ...(prev[col] || {}), min: e.target.value === "" ? undefined : parseFloat(e.target.value) },
+                          }))
+                        }
+                      />
+                      <input
+                        type="number"
+                        className="form-control form-control-sm"
+                        placeholder="max"
+                        value={f.max ?? ""}
+                        onChange={(e) =>
+                          setFilters((prev) => ({
+                            ...prev,
+                            [col]: { ...(prev[col] || {}), max: e.target.value === "" ? undefined : parseFloat(e.target.value) },
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
+                );
+              }
+
+              // categorical
+              return (
+                <div key={col} className="mb-2">
+                  <div className="fw-semibold">{col}</div>
+                  <select
+                    className="form-select form-select-sm"
+                    multiple
+                    size={3}
+                    value={(f.selected && f.selected.map(String)) || []}
+                    onChange={(e) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        [col]: { ...(prev[col] || {}), selected: [...e.target.selectedOptions].map((o) => o.value) },
+                      }))
+                    }
+                  >
+                    {(uniqueValues[col] || []).map((val) => (
+                      <option key={val} value={val}>
+                        {val}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label fw-semibold">Group / Aggregate</label>
+          <select
+            className="form-select mb-2"
+            value={groupBy || ""}
+            onChange={(e) => setGroupBy(e.target.value)}
+          >
+            <option value="">No Grouping</option>
+            {columns.map((col) => (
+              <option key={col} value={col}>
+                {col}
+              </option>
+            ))}
+          </select>
+          {selectedY.length > 0 && (
+            <div className="small text-muted">Aggregation per selected Y</div>
+          )}
+          {selectedY.map((y) => (
+            <div key={y} className="d-flex gap-2 align-items-center mb-1">
+              <div className="flex-grow-1">{y}</div>
+              <select
+                className="form-select form-select-sm w-auto"
+                value={aggFns[y] || "sum"}
+                onChange={(e) => setAggFns((prev) => ({ ...prev, [y]: e.target.value }))}
+              >
+                <option value="sum">sum</option>
+                <option value="avg">avg</option>
+                <option value="count">count</option>
+              </select>
+            </div>
+          ))}
         </div>
 
         <button

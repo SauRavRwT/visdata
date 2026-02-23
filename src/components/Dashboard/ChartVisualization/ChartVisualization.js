@@ -24,7 +24,7 @@ const COLORS = [
   "#20c997",
 ];
 
-function ChartVisualization({ data, selectedX, selectedY, chartType, chartRef }) {
+function ChartVisualization({ data, rawData, types, selectedX, selectedY, chartType, chartRef, onSelectCategory }) {
   const chartData = data.map((row) => {
     const obj = {};
     obj[selectedX] = row[selectedX];
@@ -72,7 +72,17 @@ function ChartVisualization({ data, selectedX, selectedY, chartType, chartRef })
             <Tooltip />
             <Legend />
             {selectedY.map((y, i) => (
-              <Bar key={y} dataKey={y} fill={COLORS[i % COLORS.length]} />
+              <Bar
+                key={y}
+                dataKey={y}
+                fill={COLORS[i % COLORS.length]}
+                onClick={(e) => {
+                  // e.payload contains the data for that bar
+                  if (onSelectCategory && e && e.payload) {
+                    onSelectCategory(selectedX, e.payload[selectedX]);
+                  }
+                }}
+              />
             ))}
           </BarChart>
         </ResponsiveContainer>
@@ -100,7 +110,12 @@ function ChartVisualization({ data, selectedX, selectedY, chartType, chartRef })
               }
             >
               {pieData.map((entry, index) => (
-                <Cell key={index} fill={entry.color} />
+                <Cell
+                  key={index}
+                  fill={entry.color}
+                  onClick={() => onSelectCategory && onSelectCategory(selectedX, entry.name)}
+                  style={{ cursor: onSelectCategory ? "pointer" : "default" }}
+                />
               ))}
             </Pie>
             <Tooltip />
